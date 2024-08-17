@@ -48,7 +48,7 @@ const ProductUploadPage = () => {
   const longitude = watch('longitude');
 
 
-  // const KakaoMap = dynamic<KaKaoMapProps>(() =>import('../../../components/KaKaoMap'))
+  const KakaoMap = dynamic<KaKaoMapProps>(() =>import('../../../components/KaKaoMap'))
   
 
   const onSubmit:SubmitHandler<FieldValues> = (data) => {
