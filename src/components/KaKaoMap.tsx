@@ -14,24 +14,26 @@ const KaKaoMap = ({
   setCustomValue,
   detailPage = false
 }: KaKaoMapProps) => {
-  const handleClick = (mouseEvent:any) => {
-    console.log(mouseEvent)
+  const handleClick = (mouseEvent:kakao.maps.event.MouseEvent) => {
+    if (detailPage) return;
+    console.log(latitude, longitude)
+    setCustomValue!('latitude', mouseEvent.latLng.getLat())
+    setCustomValue!('longitude', mouseEvent.latLng.getLng())
   }
 
   return (
-    function(){
-      return (
+    
         <Map
-          center={{ lat: 33.5563, lng: 126.79581 }}
+          center={{ lat: latitude, lng: longitude }}
           style={{ width: "100%", height: "360px" }}
           onClick={(_, mouseEvent) => handleClick(mouseEvent)}
         >
-          <MapMarker position={{ lat: 33.55635, lng: 126.795841 }}>
-            <div style={{color:"#000"}}></div>
+          <MapMarker position={{ lat: latitude, lng: longitude }}>
+            
           </MapMarker>
         </Map>
-      )
-    }
+      
+    
   )
 }
 

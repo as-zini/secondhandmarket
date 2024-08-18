@@ -32,7 +32,7 @@ const CategoryInput = ({
       ${selected ? 'border-onrange-500':'border-neutral-200'}
       `}>
       <Icon size={30}/>
-      <div className='font-semibold'></div>
+      <div className='font-semibold'>{label}</div>
     </div>
   )
 }

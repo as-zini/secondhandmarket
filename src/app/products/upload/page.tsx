@@ -13,9 +13,12 @@ import React, { useState } from 'react'
 import { Field, FieldValues, SubmitHandler, useForm} from 'react-hook-form';
 import KaKaoMap from '../../../components/KaKaoMap';
 import { KaKaoMapProps } from '../../../components/KaKaoMap';
+import axios from 'axios';
+import { useRouter } from 'next/navigation';
 
 const ProductUploadPage = () => {
   const [isLoading, setIsLoading] = useState(false);
+  const router = useRouter();
 
   const {
     register,
@@ -48,11 +51,28 @@ const ProductUploadPage = () => {
   const longitude = watch('longitude');
 
 
-  const KakaoMap = dynamic<KaKaoMapProps>(() =>import('../../../components/KaKaoMap'))
+  const KakaoMap = dynamic<KaKaoMapProps>(() =>import('../../../components/KaKaoMap'),{
+    ssr:false
+  })
+  
+
+  
   
 
   const onSubmit:SubmitHandler<FieldValues> = (data) => {
+    setIsLoading(true);
 
+    axios.post('/api/products', data)
+        .then(response => {
+            // router.push(`/products/${response.data.id}`)
+            console.log(response)
+        })
+        .catch((err) => {
+          console.log(err)
+        })
+        .finally(() => {
+          setIsLoading(false);
+        })
   }   
 
   const setCustomValue = (id:string, value:any) => {
