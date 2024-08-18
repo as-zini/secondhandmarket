@@ -61,7 +61,7 @@ model User {
 
   userType UserType @default(User)
   favoriteIds String[]
-  Product Product[]
+  Product product[]
 
   
   
@@ -78,7 +78,7 @@ model VerificationToken {
   @@map("verificationtokens")
 }
 
-model Product {
+model product {
   id String @id @default(cuid())
   title String
   description String
